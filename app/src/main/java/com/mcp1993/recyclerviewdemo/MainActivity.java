@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,8 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView= (RecyclerView) findViewById(R.id.recycler_view);
         adapter=new MoviesAdapter(list);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        //水平方向，默认竖直方向
+//        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(mLayoutManager);
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(adapter);
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 Movie movie = list.get(position);
                 Toast.makeText(MainActivity.this, movie.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
-                Log.e("string","string");
+
             }
 
             @Override
